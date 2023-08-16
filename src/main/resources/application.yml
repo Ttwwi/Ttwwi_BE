@@ -4,7 +4,7 @@ server :
 spring :
   datasource :
     driver-class-name : com.mysql.cj.jdbc.Driver #mySQL을 사용
-    url : jdbc:mysql://52.79.255.0/Ttwwi?createDatabaseIfNotExist=true&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    url : jdbc:mysql://43.202.39.197/Ttwwi?createDatabaseIfNotExist=true&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username : root #db 계정
     password : wognghrn6974! # db 비밀번호
     
@@ -26,14 +26,14 @@ spring :
             client-id : c254e9d47fb23b0584cdbb5ba9412fe6
             client-secret : EIOfgrxkuI1BUegOzmVB8EANJb8tB8Ng
             client-authentication-method : POST
-            redirectUri : http://localhost:8000/login/oauth2/code/kakao
+            redirectUri : http://43.202.39.197:8000/login/oauth2/code/kakao
             scope : profile_nickname, account_email
             authorization-grant-type : authorization_code
             
           facebook :
             client-id : 665003775649450
             client-secret : 2d373d9aa42a983333f4f48021b65252
-            redirectUri : http://localhost:8000/login/oauth2/code/facebook
+            redirectUri : http://43.202.39.197:8000/login/oauth2/code/facebook
             scope : public_profile, email
           
         provider :
@@ -43,11 +43,8 @@ spring :
             userInfoUri : https://kapi.kakao.com/v2/user/me
             userNameAttribute : id
             
-#          facebook:
-#            authorizationUri : https://www.facebook.com/v3.0/dialog/oauth
-#            tokenUri : https://graph.facebook.com/v3.0/oauth/access_token
 
 jwt:
         # ttwwi-backend-spring-boot-security-jwt-OAuth2-encoder-ttwwi-backend
   secret : dHR3d2ktYmFja2VuZC1zcHJpbmctYm9vdC1zZWN1cml0eS1qd3QtT0F1dGgyLWVuY29kZXItdHR3d2ktYmFja2VuZA==
-  authorizedRedirectUri : http://localhost:3000/oauth2/redirect
+  authorizedRedirectUri : http://43.202.39.197:3000/oauth2/redirect
