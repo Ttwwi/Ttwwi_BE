@@ -13,7 +13,7 @@ spring :
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     open-in-view : false
     hibernate :
-      ddl-auto : validate
+      ddl-auto : create
       
     #show-sql : 실제 실행되는 쿼리를 로그에 표시
     show_sql : true
