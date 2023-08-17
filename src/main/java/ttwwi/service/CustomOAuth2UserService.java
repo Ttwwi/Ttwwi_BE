@@ -73,6 +73,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
                 .email(oAuth2UserInfo.getEmail())
                 .name(oAuth2UserInfo.getName())
                 .oauth2Id(oAuth2UserInfo.getOAuth2Id())
+                .imageUrl(oAuth2UserInfo.getImageUrl())
                 .authProvider(authProvider)
                 .role(Role.ROLE_USER)
                 .build();

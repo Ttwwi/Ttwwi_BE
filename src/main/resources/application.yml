@@ -13,7 +13,7 @@ spring :
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     open-in-view : false
     hibernate :
-      ddl-auto : validate
+      ddl-auto : create
       
     #show-sql : 실제 실행되는 쿼리를 로그에 표시
     show_sql : true
@@ -27,7 +27,7 @@ spring :
             client-secret : EIOfgrxkuI1BUegOzmVB8EANJb8tB8Ng
             client-authentication-method : POST
             redirectUri : http://43.202.39.197:8000/login/oauth2/code/kakao
-            scope : profile_nickname, account_email
+            scope : profile_nickname, profile_image, account_email
             authorization-grant-type : authorization_code
             
           facebook :

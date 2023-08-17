@@ -11,17 +11,25 @@ public class FaceBookOAuth2User extends OAuth2UserInfo
     }
 
         @Override
-        public String getOAuth2Id() {
+        public String getOAuth2Id() 
+        {
             return (String) attributes.get("id");
         }
 
         @Override
-        public String getEmail() {
+        public String getEmail() 
+        {
             return (String) attributes.get("email");
         }
 
         @Override
-        public String getName() {
+        public String getName() 
+        {
             return (String) attributes.get("name");
+        }
+        
+        public String getImageUrl()
+        {
+        	return (String) attributes.get("imageUrl");
         }
 }

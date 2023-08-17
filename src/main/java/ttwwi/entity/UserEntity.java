@@ -33,12 +33,15 @@ public class UserEntity
     @Enumerated(EnumType.STRING)
     private Role role;
     
+    private String imageUrl;
+    
     private String password;
 
     public UserEntity update(OAuth2UserInfo oAuth2UserInfo) 
     {
         this.name = oAuth2UserInfo.getName();
         this.oauth2Id = oAuth2UserInfo.getOAuth2Id();
+        this.imageUrl = oAuth2UserInfo.getImageUrl();
 
         return this;
     }
