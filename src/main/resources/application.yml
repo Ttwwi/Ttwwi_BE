@@ -49,4 +49,7 @@ spring :
 jwt:
         # ttwwi-backend-spring-boot-security-jwt-OAuth2-encoder-ttwwi-backend
   secret : dHR3d2ktYmFja2VuZC1zcHJpbmctYm9vdC1zZWN1cml0eS1qd3QtT0F1dGgyLWVuY29kZXItdHR3d2ktYmFja2VuZA==
-  authorizedRedirectUri : http://43.202.39.197:8000/oauth2/redirect
+  #User가 인증 성공 후 권한 코드를 전달할 도메인의 endPoint
+  authorizedRedirectUri : 
+      - http://43.202.39.197:8000/oauth2/redirect
+      - myandroidapp://oauth2/redirect
