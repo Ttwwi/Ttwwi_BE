@@ -11,15 +11,12 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import lombok.RequiredArgsConstructor;
-import ttwwi.jwt.JwtAccessDeniedHandler;
-import ttwwi.jwt.JwtAuthenticationEntryPoint;
 import ttwwi.jwt.JwtFilter;
 import ttwwi.jwt.JwtTokenProvider;
 import ttwwi.oauth2.OAuth2AuthenticationFailureHandler;
 import ttwwi.oauth2.OAuth2AuthenticationSuccessHandler;
 import ttwwi.repository.CookieAuthorizationRequestRepository;
 import ttwwi.service.CustomOAuth2UserService;
-
 
 @Configuration
 @EnableWebSecurity
@@ -34,22 +31,26 @@ public class SecurityConfig implements WebMvcConfigurer
     private final OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
     private final OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
     
-    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-    private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception 
     {
         //httpBasic, csrf, formLogin, rememberMe, logout, session disable
     	httpSecurity
+    	
+			/*	.exceptionHandling()
+					.authenticationEntryPoint(jwtAuthenticationEntryPoint)// 인증 과정에서 생길 exception 처리
+					.accessDeniedHandler(jwtAccessDeniedHandler); // 인가 과정에서 생길 Exception 처리
+    		*/
+    	
                 .cors().and()
                 .csrf().disable()
                 .httpBasic().disable()
                 .formLogin().disable()
                 .rememberMe().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                //.and().exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).accessDeniedHandler(jwtAccessDeniedHandler)
-                ;
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+    	
+
+    	
 
         //요청에 대한 권한 설정
     	httpSecurity
@@ -61,14 +62,16 @@ public class SecurityConfig implements WebMvcConfigurer
         //oauth2Login
     	httpSecurity
     			.oauth2Login()
-                .authorizationEndpoint().baseUri("/oauth2/authorize")  							// 소셜 로그인 url
+    												// ex) /oauth2/authorize/kakao 
+                .authorizationEndpoint().baseUri("/oauth2/authorize")							// front -> back으로 요청 보내는 소셜 로그인 URL
                 .authorizationRequestRepository(cookieAuthorizationRequestRepository).and()  	// 인증 요청을 cookie 에 저장
-                .redirectionEndpoint().baseUri("/oauth2/callback/*").and()  					// 소셜 인증 후 redirect url
+                									// ex) //oauth2/callback/kakao
+                .redirectionEndpoint().baseUri("/oauth2/callback/*").and()  					// Authorization code와 함께 리다이렉트할 URL 
                 
-                //userService()는 OAuth2 인증 과정에서 Authentication 생성에 필요한 OAuth2User 를 반환하는 클래스를 지정한다.
-                .userInfoEndpoint().userService(customOAuth2UserService).and()  				// 회원 정보 처리
-                .successHandler(oAuth2AuthenticationSuccessHandler)
-                .failureHandler(oAuth2AuthenticationFailureHandler);
+                .userInfoEndpoint().userService(customOAuth2UserService).and()  				// 회원 정보 처리, Provider로부터 획득한 유저정보를 다룰 service class를 지정
+                
+                .successHandler(oAuth2AuthenticationSuccessHandler)								// OAuth2 로그인 성공 시 호출되는 handler
+                .failureHandler(oAuth2AuthenticationFailureHandler);							
 
     	httpSecurity
     			.logout()
@@ -77,6 +80,7 @@ public class SecurityConfig implements WebMvcConfigurer
     	
         //jwt filter 설정
         httpSecurity
+        		//// UsernamePasswordFilter에서 클라이언트가 요청한 리소스의 접근 권한이 없을 때 막는 역할을 하기 때문에 이 필터 전에 JwtFilter실행
         		.addFilterBefore(new JwtFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
    	
         return httpSecurity

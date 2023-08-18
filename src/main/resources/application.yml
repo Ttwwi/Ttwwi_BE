@@ -49,4 +49,4 @@ spring :
 jwt:
         # ttwwi-backend-spring-boot-security-jwt-OAuth2-encoder-ttwwi-backend
   secret : dHR3d2ktYmFja2VuZC1zcHJpbmctYm9vdC1zZWN1cml0eS1qd3QtT0F1dGgyLWVuY29kZXItdHR3d2ktYmFja2VuZA==
-  authorizedRedirectUri : http://43.202.39.197:3000/oauth2/redirect
+  authorizedRedirectUri : http://43.202.39.197:8000/oauth2/redirect
