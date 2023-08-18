@@ -26,15 +26,15 @@ spring :
             client-id : c254e9d47fb23b0584cdbb5ba9412fe6
             client-secret : EIOfgrxkuI1BUegOzmVB8EANJb8tB8Ng
             client-authentication-method : POST
-            redirectUri : http://43.202.39.197:8000/login/oauth2/code/kakao
+            redirectUri : http://43.202.39.197:8000/oauth2/callback/kakao
             scope : profile_nickname, profile_image, account_email
             authorization-grant-type : authorization_code
             
-          facebook :
-            client-id : 665003775649450
-            client-secret : 2d373d9aa42a983333f4f48021b65252
-            redirectUri : http://43.202.39.197:8000/login/oauth2/code/facebook
-            scope : public_profile, email
+#          facebook :
+#            client-id : 665003775649450
+#            client-secret : 2d373d9aa42a983333f4f48021b65252
+#            redirectUri : http://43.202.39.197:8000/oauth2/callback/facebook
+#            scope : public_profile, email
           
         provider :
           kakao :

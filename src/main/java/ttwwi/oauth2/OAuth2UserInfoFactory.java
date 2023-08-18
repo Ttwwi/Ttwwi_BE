@@ -12,7 +12,7 @@ public class OAuth2UserInfoFactory
         switch (authProvider) 
         {
             case KAKAO: return new KakaoOAuth2User(attributes);
-            case FACEBOOK: return new FaceBookOAuth2User(attributes);
+//            case FACEBOOK: return new FaceBookOAuth2User(attributes);
 
             default: throw new IllegalArgumentException("Invalid Provider Type.");
         }
