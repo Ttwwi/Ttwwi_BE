@@ -23,8 +23,10 @@ spring :
       client :
         registration :
           kakao :
-            client-id : c254e9d47fb23b0584cdbb5ba9412fe6
-            client-secret : EIOfgrxkuI1BUegOzmVB8EANJb8tB8Ng
+            client-id : 70a91522183e7b2690abffdcdcecb000 
+            # c254e9d47fb23b0584cdbb5ba9412fe6
+            client-secret : VvQQDt3uScfsqBdt70FUXILCQhG1btW8
+            # EIOfgrxkuI1BUegOzmVB8EANJb8tB8Ng
             client-authentication-method : POST
             redirectUri : http://43.202.39.197:8000/oauth2/callback/kakao
             scope : profile_nickname, profile_image, account_email
