@@ -26,7 +26,7 @@ public class UserController
 	    @PostMapping("/oauth2/code/kakao")
 	    public void kakaoCallback(@RequestParam String token, Model model) 
 	    {
-	    	model.addAttribute("token", token);
+	    	model.addAttribute("accesstoken", token);
 	        System.out.println(token);
 	    }
 }
