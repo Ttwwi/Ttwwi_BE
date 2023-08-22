@@ -25,6 +25,7 @@ spring :
           kakao :
             client-id : 70a91522183e7b2690abffdcdcecb000 
             client-secret : VvQQDt3uScfsqBdt70FUXILCQhG1btW8
+            
             client-authentication-method : POST
             redirectUri : http://43.202.39.197:8000/login/oauth2/code/kakao
             scope : profile_nickname, profile_image, account_email
@@ -46,4 +47,4 @@ jwt:
         # ttwwi-backend-spring-boot-security-jwt-OAuth2-encoder-ttwwi-backend
   secret : dHR3d2ktYmFja2VuZC1zcHJpbmctYm9vdC1zZWN1cml0eS1qd3QtT0F1dGgyLWVuY29kZXItdHR3d2ktYmFja2VuZA==
   #User가 인증 성공 후 권한 코드를 전달할 도메인의 endPoint
-  authorizedRedirectUri : kakaoc5c754213bc47db0bf3dca88211b5fe3://oauth
+  authorizedRedirectUri : #kakaoc5c754213bc47db0bf3dca88211b5fe3://oauth
