@@ -26,11 +26,11 @@ public class UserController
 	    
 	@ResponseBody
 	    @GetMapping("/oauth2/code/kakao")
-	    public void kakaoCallback(@RequestBody MyData accessToken) 
+	    public String kakaoCallback(@RequestBody MyData accessToken) 
 	    {
 	    	
 	        System.out.println("token : " + accessToken.getValue());
-	        //return "Value received and printed";
+	        return accessToken.getValue();
 	    }
 	    
 		public class MyData 
