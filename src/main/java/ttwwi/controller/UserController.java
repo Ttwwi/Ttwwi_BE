@@ -31,7 +31,7 @@ public class UserController
 //	    }
 	    
 
-	    @PostMapping("/oauth2/code/kakao")
+	    @GetMapping("/oauth2/code/kakao")
 	    public void kakaoCallback(@RequestBody MyData accessToken) 
 	    {
 	    	
