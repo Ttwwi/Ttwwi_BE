@@ -17,7 +17,7 @@ public class UserController
     @PostMapping("/oauth2/code/kakao")
     public String kakaojson(@RequestBody AccessTokenDto accessToken) 
     {
-        System.out.println("Received JSON from frontend: " + accessToken.getKey1() + ", " + accessToken.getKey2());
+        System.out.println("Received JSON from frontend: " + accessToken.getAccessToken());
         return "JSON received and printed";
     }
 }
