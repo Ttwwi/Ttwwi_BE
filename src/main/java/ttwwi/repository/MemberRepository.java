@@ -2,13 +2,13 @@ package ttwwi.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import ttwwi.entity.UserEntity;
+import ttwwi.entity.Member;
 
 import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<UserEntity, Long> 
+public interface MemberRepository extends JpaRepository<Member, Long> 
 {
-    Optional<UserEntity> findByEmail(String email);
+    Optional<Member> findByEmail(String email);
     boolean existsByEmail(String email);
     
 }

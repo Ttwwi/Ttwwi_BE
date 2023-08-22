@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-public class UserEntity
+public class Member
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +37,7 @@ public class UserEntity
     
     private String password;
 
-    public UserEntity update(OAuth2UserInfo oAuth2UserInfo) 
+    public Member update(OAuth2UserInfo oAuth2UserInfo) 
     {
         this.name = oAuth2UserInfo.getName();
         this.oauth2Id = oAuth2UserInfo.getOAuth2Id();

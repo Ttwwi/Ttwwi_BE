@@ -3,7 +3,7 @@ package ttwwi.oauth2;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import ttwwi.entity.UserEntity;
+import ttwwi.entity.Member;
 import ttwwi.enums.Role;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -35,7 +35,7 @@ public class UserPrincipal implements OAuth2User, UserDetails
         this.authorities = authorities;
     }
 
-    public static UserPrincipal create(UserEntity userEntity, Map<String, Object> attributes) 
+    public static UserPrincipal create(Member userEntity, Map<String, Object> attributes) 
     {
         List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(Role.ROLE_USER.name()));
         UserPrincipal userPrincipal = new UserPrincipal(userEntity.getId(), userEntity.getEmail(), authorities);

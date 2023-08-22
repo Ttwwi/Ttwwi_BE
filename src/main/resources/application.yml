@@ -24,11 +24,9 @@ spring :
         registration :
           kakao :
             client-id : 70a91522183e7b2690abffdcdcecb000 
-            # c254e9d47fb23b0584cdbb5ba9412fe6
             client-secret : VvQQDt3uScfsqBdt70FUXILCQhG1btW8
-            # EIOfgrxkuI1BUegOzmVB8EANJb8tB8Ng
             client-authentication-method : POST
-            redirectUri : http://43.202.39.197:8000/oauth2/callback/kakao
+            redirectUri : http://43.202.39.197:8000/login/oauth2/code/kakao
             scope : profile_nickname, profile_image, account_email
             authorization-grant-type : authorization_code
             
@@ -44,10 +42,8 @@ spring :
             tokenUri : https://kauth.kakao.com/oauth/token
             userInfoUri : https://kapi.kakao.com/v2/user/me
             userNameAttribute : id
-            
-
 jwt:
         # ttwwi-backend-spring-boot-security-jwt-OAuth2-encoder-ttwwi-backend
   secret : dHR3d2ktYmFja2VuZC1zcHJpbmctYm9vdC1zZWN1cml0eS1qd3QtT0F1dGgyLWVuY29kZXItdHR3d2ktYmFja2VuZA==
   #User가 인증 성공 후 권한 코드를 전달할 도메인의 endPoint
-  authorizedRedirectUri : http://43.202.39.197:8000/
+  authorizedRedirectUri : kakaoc5c754213bc47db0bf3dca88211b5fe3://oauth

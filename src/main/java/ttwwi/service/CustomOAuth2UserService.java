@@ -1,13 +1,13 @@
 package ttwwi.service;
 
 import lombok.RequiredArgsConstructor;
-import ttwwi.entity.UserEntity;
+import ttwwi.entity.Member;
 import ttwwi.enums.AuthProvider;
 import ttwwi.enums.Role;
 import ttwwi.oauth2.OAuth2UserInfo;
 import ttwwi.oauth2.OAuth2UserInfoFactory;
 import ttwwi.oauth2.UserPrincipal;
-import ttwwi.repository.UserRepository;
+import ttwwi.repository.MemberRepository;
 
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -25,7 +25,7 @@ import java.util.Optional;
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> 
 {
 
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest oAuth2UserRequest) throws OAuth2AuthenticationException 
@@ -47,7 +47,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
             throw new RuntimeException("Email not found from OAuth2 provider");
         }
 
-        UserEntity userEntity = userRepository.findByEmail(oAuth2UserInfo.getEmail()).orElse(null);
+        Member userEntity = memberRepository.findByEmail(oAuth2UserInfo.getEmail()).orElse(null);
         //이미 가입된 경우
         if (userEntity != null) 
         {
@@ -66,9 +66,9 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         return UserPrincipal.create(userEntity, oAuth2UserInfo.getAttributes());
     }
 
-    private UserEntity registerUser(AuthProvider authProvider, OAuth2UserInfo oAuth2UserInfo) 
+    private Member registerUser(AuthProvider authProvider, OAuth2UserInfo oAuth2UserInfo) 
     {
-        UserEntity userEntity = UserEntity.builder()
+        Member userEntity = Member.builder()
         		
                 .email(oAuth2UserInfo.getEmail())
                 .name(oAuth2UserInfo.getName())
@@ -78,12 +78,12 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
                 .role(Role.ROLE_USER)
                 .build();
 
-        return userRepository.save(userEntity);
+        return memberRepository.save(userEntity);
     }
 
-    private UserEntity updateUser(UserEntity userEntity, OAuth2UserInfo oAuth2UserInfo) 
+    private Member updateUser(Member userEntity, OAuth2UserInfo oAuth2UserInfo) 
     {
 
-        return userRepository.save(userEntity.update(oAuth2UserInfo));
+        return memberRepository.save(userEntity.update(oAuth2UserInfo));
     }
 }
