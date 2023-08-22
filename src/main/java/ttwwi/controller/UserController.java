@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("/login")
@@ -23,7 +24,7 @@ public class UserController
 	    @ResponseBody
 	    @GetMapping("/oauth2/code/kakao")
 	    public void kakaoCallback(@RequestParam String code) 
-{
+	    {
 	        System.out.println(code);
 	    }
 }
