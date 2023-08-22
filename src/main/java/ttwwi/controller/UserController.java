@@ -22,7 +22,7 @@ public class UserController
 	     * [GET] /oauth/kakao/callback
 	     */
 	    @ResponseBody
-	    @GetMapping("/oauth2/code/kakao")
+	    @PostMapping("/oauth2/code/kakao")
 	    public void kakaoCallback(@RequestParam String code) 
 	    {
 	        System.out.println(code);
