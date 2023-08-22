@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,8 +24,9 @@ public class UserController
 	     */
 	    @ResponseBody
 	    @PostMapping("/oauth2/code/kakao")
-	    public void kakaoCallback(@RequestParam String code) 
+	    public void kakaoCallback(@RequestParam String token, Model model) 
 	    {
-	        System.out.println(code);
+	    	model.addAttribute("token", token);
+	        System.out.println(token);
 	    }
 }
