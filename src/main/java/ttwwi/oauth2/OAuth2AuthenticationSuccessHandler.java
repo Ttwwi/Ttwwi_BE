@@ -53,7 +53,8 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         Optional<String> redirectUri = CookieUtil.getCookie(request, REDIRECT_URI_PARAM_COOKIE_NAME)
                 .map(Cookie::getValue);
 
-        if (redirectUri.isPresent() && !isAuthorizedRedirectUri(redirectUri.get())) {
+        if(redirectUri.isPresent() && !isAuthorizedRedirectUri(redirectUri.get())) 
+        {
             throw new RuntimeException("redirect URIs are not matched.");
         }
         String targetUrl = redirectUri.orElse(getDefaultTargetUrl());
@@ -66,7 +67,8 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
                 .build().toUriString();
     }
 
-    protected void clearAuthenticationAttributes(HttpServletRequest request, HttpServletResponse response) {
+    protected void clearAuthenticationAttributes(HttpServletRequest request, HttpServletResponse response) 
+    {
         super.clearAuthenticationAttributes(request);
         cookieAuthorizationRequestRepository.removeAuthorizationRequestCookies(request, response);
     }
