@@ -19,6 +19,12 @@ public class UserController
     public ResponseEntity<String> kakaoJson(@RequestBody AccessTokenDto accessToken) 
     {
         System.out.println("Received JSON from frontend: " + accessToken.getAccessToken());
-        return new ResponseEntity<> (HttpStatus.OK);
+               
+        if(accessToken.getAccessToken().equals(null))
+        {
+        	return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("faileds");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body("success");
     }
+
 }
