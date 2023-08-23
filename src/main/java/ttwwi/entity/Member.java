@@ -49,11 +49,4 @@ public class Member
 
         return this;
     }
-    
-	   @ManyToMany
-	   @JoinTable(name = "feed1", joinColumns = {@JoinColumn (name = "oauth2Id", referencedColumnName = "oauth2Id")},
-	   inverseJoinColumns = {
-			   @JoinColumn(name = "id"), @JoinColumn(name = "title")
-	   })
-	   private Set<Feed> authorities;
 }
