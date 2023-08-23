@@ -55,7 +55,7 @@ public class SecurityConfig implements WebMvcConfigurer
         //요청에 대한 권한 설정
     	httpSecurity
     			.authorizeRequests() 															//인증되지않아도 가능
-            	.antMatchers("/", "/error", "/favicon.ico", "/**/*.png", "/**/*.gif", "/**/*.svg", "/**/*.jpg", "/**/*.html", "/**/*.css", "/**/*.js", "/oauth2/**", "/login/**").permitAll()
+            	.antMatchers("/", "/error", "/favicon.ico", "/**/*.png", "/**/*.gif", "/**/*.svg", "/**/*.jpg", "/**/*.html", "/**/*.css", "/**/*.js", "/oauth2/**").permitAll()
                 .anyRequest().authenticated();
 
         //oauth2Login
@@ -64,7 +64,7 @@ public class SecurityConfig implements WebMvcConfigurer
     												// ex) /oauth2/authorize/kakao 
                 .authorizationEndpoint().baseUri("/oauth2/authorize")							// front -> back으로 요청 보내는 소셜 로그인 URL
                 .authorizationRequestRepository(cookieAuthorizationRequestRepository).and()  	// 인증 요청을 cookie 에 저장
-                									// ex) //oauth2/callback/kakao
+                									// ex) //oauth2/code/kakao
                 .redirectionEndpoint().baseUri("/oauth2/code/*").and()  					// Authorization code와 함께 리다이렉트할 URL 
                 
                 .userInfoEndpoint().userService(customOAuth2UserService).and()  				// 회원 정보 처리, Provider로부터 획득한 유저정보를 다룰 service class를 지정

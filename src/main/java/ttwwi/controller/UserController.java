@@ -11,11 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/login")
 @RequiredArgsConstructor
 public class UserController 
 {	
-	@PostMapping("/oauth2/code/kakao")
+	@PostMapping("/oauth2/authorize")
     public ResponseEntity<String> kakaoJson(@RequestBody AccessTokenDto accessToken) 
     {
         System.out.println("Received JSON from frontend: " + accessToken.getAccessToken());
@@ -24,7 +23,6 @@ public class UserController
         {
         	return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("faileds");
         }
-        return ResponseEntity.status(HttpStatus.OK).body("success");
+        return ResponseEntity.status(HttpStatus.OK).body("success");   
     }
-
 }
