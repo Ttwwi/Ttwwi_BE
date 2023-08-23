@@ -55,7 +55,7 @@ public class SecurityConfig implements WebMvcConfigurer
         //요청에 대한 권한 설정
     	httpSecurity
     			.authorizeRequests() 															//인증되지않아도 가능
-            	.antMatchers("/", "/error", "/favicon.ico", "/**/*.png", "/**/*.gif", "/**/*.svg", "/**/*.jpg", "/**/*.html", "/**/*.css", "/**/*.js", "/oauth2/**", "/login/**") .permitAll()
+            	.antMatchers("/", "/error", "/favicon.ico", "/**/*.png", "/**/*.gif", "/**/*.svg", "/**/*.jpg", "/**/*.html", "/**/*.css", "/**/*.js", "/oauth2/**", "/login/**").permitAll()
                 .anyRequest().authenticated();
 
         //oauth2Login

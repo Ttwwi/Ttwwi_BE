@@ -5,6 +5,8 @@ import ttwwi.enums.AuthProvider;
 import ttwwi.enums.Role;
 import ttwwi.oauth2.OAuth2UserInfo;
 
+import java.util.Set;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -17,7 +19,7 @@ public class Member
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @NotNull
     private String email;
@@ -37,6 +39,8 @@ public class Member
     
     private String password;
 
+    
+    
     public Member update(OAuth2UserInfo oAuth2UserInfo) 
     {
         this.name = oAuth2UserInfo.getName();
@@ -45,4 +49,11 @@ public class Member
 
         return this;
     }
+    
+	   @ManyToMany
+	   @JoinTable(name = "feed1", joinColumns = {@JoinColumn (name = "oauth2Id", referencedColumnName = "oauth2Id")},
+	   inverseJoinColumns = {
+			   @JoinColumn(name = "id"), @JoinColumn(name = "title")
+	   })
+	   private Set<Feed> authorities;
 }

@@ -21,14 +21,14 @@ import java.util.Map;
 public class UserPrincipal implements OAuth2User, UserDetails 
 {
 
-    private Integer id;
+    private Long id;
     private String email;
     private Collection<? extends GrantedAuthority> authorities;
 
     @Setter
     private Map<String, Object> attributes;
 
-    public UserPrincipal(Integer id, String email, Collection<? extends GrantedAuthority> authorities) 
+    public UserPrincipal(Long id, String email, Collection<? extends GrantedAuthority> authorities) 
     {
         this.id = id;
         this.email = email;
