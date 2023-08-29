@@ -61,13 +61,6 @@ public class SecurityConfig implements WebMvcConfigurer
     			.authorizeRequests() 															//인증되지않아도 가능
             	.antMatchers("/**", "/error", "/favicon.ico", "/**/*.png", "/**/*.gif", "/**/*.svg", "/**/*.jpg", "/**/*.html", "/**/*.css", "/**/*.js").permitAll()
                 .anyRequest().authenticated();
-
-        //oauth2Login
-    	httpSecurity
-    			.oauth2Login()  	
-                .redirectionEndpoint().baseUri("/login/oauth2/code/*").and()		// Authorization code와 함께 리다이렉트할 URL           
-                .userInfoEndpoint().userService(customOAuth2UserService);			// 회원 정보 처리, Provider로부터 획득한 유저정보를 다룰 service class를 지정				
-
     	httpSecurity
     			.logout()
                 .clearAuthentication(true)
