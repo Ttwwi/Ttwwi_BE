@@ -33,13 +33,3 @@ public class LoginController
 	    return ResponseEntity.ok(customOAuth2UserService.loadUser(accesstoken));
 	}
 }
-
-//	RestTemplate restTemplate = new RestTemplate();
-//	
-////Access Token을 이용해서 사용자 정보를 응답 받는 코드
-//HttpHeaders AccessTokenHeaders = new HttpHeaders();
-//AccessTokenHeaders.add("Authorization", "Bearer " + accesstoken.getAccessToken());
-//AccessTokenHeaders.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
-//
-//HttpEntity<HttpHeaders> kakaoRequest = new HttpEntity<>(AccessTokenHeaders);
-//ResponseEntity<String> profileResponse = restTemplate.exchange("https://kapi.kakao.com/v2/user/me", HttpMethod.POST, kakaoRequest, String.class);
