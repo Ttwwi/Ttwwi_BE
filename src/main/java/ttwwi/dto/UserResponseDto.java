@@ -8,9 +8,9 @@ import lombok.Getter;
 @AllArgsConstructor
 public class UserResponseDto 
 {
-        private String grantType;
-        private String accessToken;
-        private Long accessTokenExpirationTime;
-        private String refreshToken;
-        private Long refreshTokenExpirationTime;
+	private String grantType;
+    private String accessToken;
+    private Long accessTokenExpirationTime;
+    private String refreshToken;
+    private Long refreshTokenExpirationTime;
 }

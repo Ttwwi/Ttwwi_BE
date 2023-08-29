@@ -9,6 +9,7 @@ import ttwwi.oauth2.OAuth2UserInfoFactory;
 import ttwwi.oauth2.UserPrincipal;
 import ttwwi.repository.MemberRepository;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
@@ -27,6 +28,8 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
     private final MemberRepository memberRepository;
 
+    //서드파티에 사용자 정보를 요청할 수 있는 access token 을 얻고나서 실행
+    //access token과 같은 정보들이 oAuth2UserRequest 파라미터에 들어있음
     @Override
     public OAuth2User loadUser(OAuth2UserRequest oAuth2UserRequest) throws OAuth2AuthenticationException 
     {
@@ -42,16 +45,16 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         AuthProvider authProvider = AuthProvider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId().toUpperCase());
         OAuth2UserInfo oAuth2UserInfo = OAuth2UserInfoFactory.getOAuth2UserInfo(authProvider, oAuth2User.getAttributes());
 
-        if (!StringUtils.hasText(oAuth2UserInfo.getEmail())) 
+        if(!StringUtils.hasText(oAuth2UserInfo.getEmail())) 
         {
             throw new RuntimeException("Email not found from OAuth2 provider");
         }
 
-        Member userEntity = memberRepository.findByEmail(oAuth2UserInfo.getEmail()).orElse(null);
+        Member userEntity = memberRepository.findBymemberEmail(oAuth2UserInfo.getEmail()).orElse(null);
         //이미 가입된 경우
         if (userEntity != null) 
         {
-            if (!userEntity.getAuthProvider().equals(authProvider)) 
+            if (!userEntity.getOauth2Provider().equals(authProvider)) 
             {
                 throw new RuntimeException("Email already signed up.");
             }
@@ -70,11 +73,11 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
     {
         Member userEntity = Member.builder()
         		
-                .email(oAuth2UserInfo.getEmail())
-                .name(oAuth2UserInfo.getName())
+                .memberEmail(oAuth2UserInfo.getEmail())
+                .memberName(oAuth2UserInfo.getName())
                 .oauth2Id(oAuth2UserInfo.getOAuth2Id())
-                .imageUrl(oAuth2UserInfo.getImageUrl())
-                .authProvider(authProvider)
+                .memberImageurl(oAuth2UserInfo.getImageUrl())
+                .oauth2Provider(authProvider)
                 .role(Role.ROLE_USER)
                 .build();
 

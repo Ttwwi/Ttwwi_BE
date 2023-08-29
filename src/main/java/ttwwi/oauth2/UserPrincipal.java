@@ -38,7 +38,7 @@ public class UserPrincipal implements OAuth2User, UserDetails
     public static UserPrincipal create(Member userEntity, Map<String, Object> attributes) 
     {
         List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(Role.ROLE_USER.name()));
-        UserPrincipal userPrincipal = new UserPrincipal(userEntity.getId(), userEntity.getEmail(), authorities);
+        UserPrincipal userPrincipal = new UserPrincipal(userEntity.getMemberId(), userEntity.getMemberEmail(), authorities);
         userPrincipal.setAttributes(attributes);
         return userPrincipal;
     }
